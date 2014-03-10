@@ -1,6 +1,7 @@
 define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene"],
 function ( THREE, camera, controls, geometry, light, material, renderer, scene ) {
   var app = {
+    clock: new THREE.Clock( true ),
     init: function () {
       app.bike = new THREE.Mesh( geometry.bike, material.bike );
       scene.add( app.bike );
@@ -19,6 +20,9 @@ function ( THREE, camera, controls, geometry, light, material, renderer, scene )
     animate: function () {
       window.requestAnimationFrame( app.animate );
       controls.update();
+
+      material.grid.uniforms.uTime.value = app.clock.getElapsedTime();
+
       renderer.render( scene, camera );
     }
   };

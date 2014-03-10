@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import SimpleHTTPServer
+import SocketServer
  
 # Simple web server with caching disabled (useful for development)
 class MyHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
@@ -14,4 +15,7 @@ class MyHTTPRequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
  
  
 if __name__ == '__main__':
-    SimpleHTTPServer.test(HandlerClass=MyHTTPRequestHandler)
+  port = 3333
+  httpd = SocketServer.TCPServer(("", port), MyHTTPRequestHandler)
+  print "Started server on port %s" % port
+  httpd.serve_forever()

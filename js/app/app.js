@@ -4,6 +4,14 @@ function ( THREE, camera, controls, geometry, light, material, renderer, scene )
     init: function () {
       app.bike = new THREE.Mesh( geometry.bike, material.bike );
       scene.add( app.bike );
+
+      app.frontWheel = new THREE.Mesh( geometry.wheel, material.bike );
+      app.frontWheel.position = new THREE.Vector3( -1.42, 0.5, -0.1 );
+      scene.add( app.frontWheel );
+
+      app.backWheel = new THREE.Mesh( geometry.wheel, material.bike );
+      app.backWheel.position = new THREE.Vector3( 1.32, 0.5, -0.1 );
+      scene.add( app.backWheel );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );

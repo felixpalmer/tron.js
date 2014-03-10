@@ -1,20 +1,12 @@
-/* fonts */
-@font-face {
-  font-family: Hamburger;
-  src: url(../font/Hamburger.ttf);
-}
-
 /* base styles */
 
 html {
-  font-family: "Hamburger", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 24px;
   line-height: 1.2;
-  color: #fed;
-  text-shadow: black 5px 5px;
+  color: #444;
+  text-shadow: black 5px 5px 10px;
   text-align: center;
-  background: #113;
-  background: linear-gradient(45deg, #113, #101);
 }
 
 body {
@@ -25,21 +17,14 @@ h1 {
   font-size: 70px;
 }
 
-p {
-  margin: 0 0 10px 0;
-}
-
-#container {
-  padding-left: 300px;
-  padding-right: 300px;
-  padding-bottom: 200px;
-}
-
 /* threejs container styles */
 #example-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
   background:#111;
-  margin: 20px auto;
-  padding: 20px;
   min-height: 300px;
 }
 
@@ -48,14 +33,13 @@ p {
   background:#000;
   color: #666;
   text-align: center;
-  padding: 50% 0 0 0;
-  height: 0;
+  height: 100%;
 }
 
 #threejs-container canvas {
   position: absolute;
-  left: 0px;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }

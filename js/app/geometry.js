@@ -23,8 +23,13 @@ define( ["three"], function ( THREE ) {
                                                   "bevelSegments": 24,
                                                   "curveSegments": 64 } );
 
+
+  // Need to rotate grid, so that it is horizontal
+  var gameGrid = new THREE.PlaneGeometry( 1024, 1024 );
+
   return {
     bike: bikeGeometry,
+    grid: gameGrid,
     wheel: wheelGeometry
   };
 } );

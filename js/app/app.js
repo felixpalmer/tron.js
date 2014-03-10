@@ -12,6 +12,9 @@ function ( THREE, camera, controls, geometry, light, material, renderer, scene )
       app.backWheel = new THREE.Mesh( geometry.wheel, material.wheel );
       app.backWheel.position = new THREE.Vector3( 1.32, 0.5, -0.05 );
       scene.add( app.backWheel );
+
+      app.gameGrid = new THREE.Mesh( geometry.grid, material.grid );
+      scene.add( app.gameGrid );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );

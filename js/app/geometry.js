@@ -8,15 +8,19 @@ define( ["three"], function ( THREE ) {
   bikePath.lineTo( 1.05, 0.1 );
 
   var bikeGeometry = new THREE.ExtrudeGeometry( bikePath.toShapes(),
-                                                { "amount": 0.5,
-                                                  "bevelEnabled": false } );
+                                                { "amount": 0.4,
+                                                  "bevelEnabled": false,
+                                                  "curveSegments": 64 } );
 
   var wheelPath = new THREE.Path();
-  wheelPath.moveTo( 0, 0 );
-  wheelPath.absarc( 0, 0, 0.48, 0, 6.5, true );
+  wheelPath.moveTo( 0.18, 0 );
+  wheelPath.absarc( -0.18, 0, 0.18, 0, 2 * Math.PI, true );
   var wheelGeometry = new THREE.ExtrudeGeometry( wheelPath.toShapes(),
-                                                { "amount": 0.7,
-                                                  "bevelEnabled": false,
+                                                { "amount": 0.5,
+                                                  "bevelEnabled": true,
+                                                  "bevelThickness": 0.1,
+                                                  "bevelSize": 0.3,
+                                                  "bevelSegments": 24,
                                                   "curveSegments": 64 } );
 
   return {

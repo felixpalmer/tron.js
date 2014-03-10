@@ -5,12 +5,12 @@ function ( THREE, camera, controls, geometry, light, material, renderer, scene )
       app.bike = new THREE.Mesh( geometry.bike, material.bike );
       scene.add( app.bike );
 
-      app.frontWheel = new THREE.Mesh( geometry.wheel, material.bike );
-      app.frontWheel.position = new THREE.Vector3( -1.42, 0.5, -0.1 );
+      app.frontWheel = new THREE.Mesh( geometry.wheel, material.wheel );
+      app.frontWheel.position = new THREE.Vector3( -1.42, 0.5, -0.05 );
       scene.add( app.frontWheel );
 
-      app.backWheel = new THREE.Mesh( geometry.wheel, material.bike );
-      app.backWheel.position = new THREE.Vector3( 1.32, 0.5, -0.1 );
+      app.backWheel = new THREE.Mesh( geometry.wheel, material.wheel );
+      app.backWheel.position = new THREE.Vector3( 1.32, 0.5, -0.05 );
       scene.add( app.backWheel );
     },
     animate: function () {

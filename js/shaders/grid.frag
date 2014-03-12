@@ -7,13 +7,16 @@ uniform float uTime;
 varying vec3 vPosition;
 
 void addGrid( inout vec3 color, const float spacing, const float sharpness, const bool addGlow) {
+  // Fade out grid & glow with distance
+  float dist = distance( vPosition, cameraPosition );
+  dist = clamp( 20.0 / dist, 0.0, 1.0 );
   float grid = max( cos( spacing * vPosition.x ), cos( spacing * vPosition.y ) );
   grid = clamp( grid, 0.0, 1.0 );
   grid = pow( grid, sharpness );
   if ( grid < 0.8 ) {
     return;
   }
-  color = mix( color, lineColor, grid );
+  color = mix( color, lineColor, grid * dist );
 
   if ( addGlow ) {
     // Add glow, moving over time
@@ -23,7 +26,7 @@ void addGrid( inout vec3 color, const float spacing, const float sharpness, cons
     if ( glow < 0.99 ) {
       return;
     }
-    color = mix( color, glowColor, 0.1 * glow );
+    color = mix( color, glowColor, 0.1 * glow * dist );
   }
 }
 

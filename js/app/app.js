@@ -20,7 +20,7 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
       renderer.render( scene, camera );
     },
     gameStep: function() {
-      var lightcycleDirection = new THREE.Vector3( 1, 0, 0 );
+      var lightcycleDirection = new THREE.Vector3( 2, 0, 0 );
       lightcycleDirection.applyMatrix3( app.lightcycle.matrix );
       app.lightcycle.position.add( lightcycleDirection );
     }

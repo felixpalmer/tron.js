@@ -15,6 +15,7 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
     }
     this.object = object;
     this.up = new THREE.Vector3( 0, 0, 1 );
+    camera.up = this.up;
 
     this.spinLeft = false;
     this.spinRight = false;
@@ -33,6 +34,7 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
 	};
 
 	Controls.prototype.update = function() {
+    // Update object
 		if ( this.spinLeft ) {
       this.object.rotateOnAxis( this.up, Math.PI / 2 );
       this.spinLeft = false;
@@ -41,6 +43,14 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
       this.object.rotateOnAxis( this.up, -Math.PI / 2 );
       this.spinRight = false;
     }
+
+    // Update camera to "chase" object. First get offset from object, then scale this to a set length
+    var offset = camera.position.clone();
+    offset.sub( this.object.position );
+    offset.setLength( 20 );
+    camera.position.addVectors( offset, this.object.position );
+    camera.position.z = 3;
+    camera.lookAt( this.object.position );
   };
 
   return Controls;

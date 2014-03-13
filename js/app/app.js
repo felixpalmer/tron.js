@@ -1,5 +1,5 @@
-define( ["three", "camera", "controls", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
-function ( THREE, camera, controls, geometry, light, Lightcycle, material, renderer, scene ) {
+define( ["three", "camera", "Controls", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
+function ( THREE, camera, Controls, geometry, light, Lightcycle, material, renderer, scene ) {
   var app = {
     clock: new THREE.Clock( true ),
     init: function () {
@@ -8,10 +8,12 @@ function ( THREE, camera, controls, geometry, light, Lightcycle, material, rende
 
       app.gameGrid = new THREE.Mesh( geometry.grid, material.grid );
       scene.add( app.gameGrid );
+
+      app.controls = new Controls();
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
-      controls.update();
+      app.controls.update();
 
       material.grid.uniforms.uTime.value = app.clock.getElapsedTime();
 

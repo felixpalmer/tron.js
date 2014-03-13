@@ -24,7 +24,12 @@ define( ["three"], function ( THREE ) {
                                                   "curveSegments": 64 } );
 
 
-  // Need to rotate grid, so that it is horizontal
+  // Need to rotate bike parts
+  var m = new THREE.Matrix4();
+  m.makeRotationX( Math.PI / 2 );
+  bikeGeometry.applyMatrix( m );
+  wheelGeometry.applyMatrix( m );
+
   var gameGrid = new THREE.PlaneGeometry( 1024, 1024 );
 
   return {

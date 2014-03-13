@@ -5,49 +5,41 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
 		};
 	}
 
-  var Controls = function () {
+  var Controls = function ( object ) {
+    if ( !( object instanceof THREE.Object3D ) ) {
+      console.log( "Object passed to controls if not a valid Object3D object" );
+    }
     if ( container !== document ) {
       container.setAttribute( 'tabindex', -1 );
       container.focus();
     }
-    this.target = new THREE.Vector3( 0, 0, 0 );
+    this.object = object;
+    this.up = new THREE.Vector3( 0, 0, 1 );
 
-    this.moveLeft = false;
-    this.moveRight = false;
+    this.spinLeft = false;
+    this.spinRight = false;
 
     container.addEventListener( 'keydown', bind( this, this.onKeyDown ), false );
-    container.addEventListener( 'keyup', bind( this, this.onKeyUp ), false );
   };
 
 	Controls.prototype.onKeyDown = function ( event ) {
-		//event.preventDefault();
 		switch ( event.keyCode ) {
 			case 37: /*left*/
-			case 65: /*A*/ this.moveLeft = true; break;
+			case 65: /*A*/ this.spinLeft = true; break;
 
 			case 39: /*right*/
-			case 68: /*D*/ this.moveRight = true; break;
-		}
-	};
-
-	Controls.prototype.onKeyUp = function ( event ) {
-		switch( event.keyCode ) {
-			case 37: /*left*/
-			case 65: /*A*/ this.moveLeft = false; break;
-
-			case 39: /*right*/
-			case 68: /*D*/ this.moveRight = false; break;
+			case 68: /*D*/ this.spinRight = true; break;
 		}
 	};
 
 	Controls.prototype.update = function() {
-		if ( this.moveLeft ) {
-      console.log( "left" );
-      //this.object.translateX( - actualMoveSpeed );
+		if ( this.spinLeft ) {
+      this.object.rotateOnAxis( this.up, Math.PI / 2 );
+      this.spinLeft = false;
     }
-		if ( this.moveRight ) {
-      console.log( "right" );
-      //this.object.translateX( actualMoveSpeed );
+		if ( this.spinRight ) {
+      this.object.rotateOnAxis( this.up, -Math.PI / 2 );
+      this.spinRight = false;
     }
   };
 

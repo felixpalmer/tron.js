@@ -9,7 +9,7 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
       app.gameGrid = new THREE.Mesh( geometry.grid, material.grid );
       scene.add( app.gameGrid );
 
-      app.controls = new Controls();
+      app.controls = new Controls( app.lightcycle );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );

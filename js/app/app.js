@@ -20,9 +20,22 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
       renderer.render( scene, camera );
     },
     gameStep: function() {
-      var lightcycleDirection = new THREE.Vector3( 2, 0, 0 );
+      var speed = 2;
+
+      // Move light cycle
+      var lightcycleDirection = new THREE.Vector3( speed, 0, 0 );
       lightcycleDirection.applyMatrix3( app.lightcycle.matrix );
       app.lightcycle.position.add( lightcycleDirection );
+
+      // Build wall segment
+      var wallGeom = new THREE.PlaneGeometry( speed, 2 );
+      var m = new THREE.Matrix4();
+      m.makeRotationX( Math.PI / 2 );
+      wallGeom.applyMatrix( m );
+      var wall = new THREE.Mesh( wallGeom, material.wall );
+      wall.quaternion.copy( app.lightcycle.quaternion );
+      wall.position = app.lightcycle.position.clone();
+      scene.add( wall );
     }
   };
   return app;

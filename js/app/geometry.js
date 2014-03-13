@@ -24,17 +24,25 @@ define( ["three"], function ( THREE ) {
                                                   "curveSegments": 64 } );
 
 
+  var wallGeometry = new THREE.PlaneGeometry( 1, 2 );
+
   // Need to rotate bike parts
   var m = new THREE.Matrix4();
   m.makeRotationX( Math.PI / 2 );
   bikeGeometry.applyMatrix( m );
+  wallGeometry.applyMatrix( m );
   wheelGeometry.applyMatrix( m );
+
+  // Need to re-center wall, so that it grows correctly
+  m.makeTranslation( 0.5, 0, 0 );
+  wallGeometry.applyMatrix( m );
 
   var gameGrid = new THREE.PlaneGeometry( 1024, 1024 );
 
   return {
     bike: bikeGeometry,
     grid: gameGrid,
+    wall: wallGeometry,
     wheel: wheelGeometry
   };
 } );

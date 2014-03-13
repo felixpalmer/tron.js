@@ -10,6 +10,8 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
       scene.add( app.gameGrid );
 
       app.controls = new Controls( app.lightcycle );
+
+      app.lastDirection = new THREE.Vector3( 0, 0, 0 );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
@@ -22,20 +24,26 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
     gameStep: function() {
       var speed = 2;
 
-      // Move light cycle
+      // Detect if we have just turned
       var lightcycleDirection = new THREE.Vector3( speed, 0, 0 );
       lightcycleDirection.applyMatrix3( app.lightcycle.matrix );
+      var turned = !lightcycleDirection.equals( app.lastDirection );
+
+      if ( turned ) {
+        // Have just turned add new wall segment
+        app.lastDirection = lightcycleDirection.clone();
+        app.wall = new THREE.Mesh( geometry.wall, material.wall );
+        app.wall.quaternion.copy( app.lightcycle.quaternion );
+        app.wall.position = app.lightcycle.position.clone();
+        app.wall.scale.x = 0;
+        scene.add( app.wall );
+      }
+
+      // Move light cycle
       app.lightcycle.position.add( lightcycleDirection );
 
-      // Build wall segment
-      var wallGeom = new THREE.PlaneGeometry( speed, 2 );
-      var m = new THREE.Matrix4();
-      m.makeRotationX( Math.PI / 2 );
-      wallGeom.applyMatrix( m );
-      var wall = new THREE.Mesh( wallGeom, material.wall );
-      wall.quaternion.copy( app.lightcycle.quaternion );
-      wall.position = app.lightcycle.position.clone();
-      scene.add( wall );
+      // Grow wall by distance moved
+      app.wall.scale.x += speed;
     }
   };
   return app;

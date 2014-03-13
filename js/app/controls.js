@@ -43,6 +43,5 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
     }
   };
 
-
   return Controls;
 } );

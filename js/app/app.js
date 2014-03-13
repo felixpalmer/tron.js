@@ -14,10 +14,15 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
     animate: function () {
       window.requestAnimationFrame( app.animate );
       app.controls.update();
-
       material.grid.uniforms.uTime.value = app.clock.getElapsedTime();
+      app.gameStep();
 
       renderer.render( scene, camera );
+    },
+    gameStep: function() {
+      var lightcycleDirection = new THREE.Vector3( 1, 0, 0 );
+      lightcycleDirection.applyMatrix3( app.lightcycle.matrix );
+      app.lightcycle.position.add( lightcycleDirection );
     }
   };
   return app;

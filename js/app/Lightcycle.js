@@ -8,11 +8,11 @@ function ( THREE, geometry, material ) {
     this.add( this.bike );
 
     this.frontWheel = new THREE.Mesh( geometry.wheel, material.wheel );
-    this.frontWheel.position = new THREE.Vector3( -1.42, 0.05, 0.5 );
+    this.frontWheel.position = new THREE.Vector3( -1.42, 0, 0.5 );
     this.add( this.frontWheel );
 
     this.backWheel = new THREE.Mesh( geometry.wheel, material.wheel );
-    this.backWheel.position = new THREE.Vector3( 1.32, 0.05, 0.5 );
+    this.backWheel.position = new THREE.Vector3( 1.32, 0, 0.5 );
     this.add( this.backWheel );
 
   };

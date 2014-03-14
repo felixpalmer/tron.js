@@ -26,16 +26,23 @@ define( ["three"], function ( THREE ) {
 
   var wallGeometry = new THREE.PlaneGeometry( 1, 2 );
 
-  // Need to rotate bike parts
+  // Rotate bike parts upright
   var m = new THREE.Matrix4();
   m.makeRotationX( Math.PI / 2 );
   bikeGeometry.applyMatrix( m );
   wallGeometry.applyMatrix( m );
   wheelGeometry.applyMatrix( m );
 
-  // Need to re-center wall, so that it grows correctly
+  // Center bike parts around vertical axis
+  m.makeTranslation( 0, 0.2, 0 );
+  bikeGeometry.applyMatrix( m );
+  m.makeTranslation( 0, 0.25, 0 );
+  wheelGeometry.applyMatrix( m );
+
+  // Re-center wall, so that it grows correctly (i.e. place one corner at the origin)
   m.makeTranslation( 0.5, 0, 0 );
   wallGeometry.applyMatrix( m );
+
 
   var gameGrid = new THREE.PlaneGeometry( 1024, 1024 );
 

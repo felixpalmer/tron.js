@@ -9,7 +9,7 @@ define( ["three"], function ( THREE ) {
   bikePath.lineTo( -1, 0.1 );
 
   // Cut out semi-circular hole
-  bikePath.moveTo( 0, 0.8 );
+  bikePath.moveTo( 0, 0.2 );
   bikePath.absarc( 0, 0, 0.5, 0, Math.PI, true );
 
   var bikeGeometry = new THREE.ExtrudeGeometry( bikePath.toShapes(),
@@ -23,7 +23,8 @@ define( ["three"], function ( THREE ) {
   var engineGeometry = new THREE.ExtrudeGeometry( enginePath.toShapes(),
                                                 { "amount": 0.5,
                                                   "bevelEnabled": false,
-                                                  "curveSegments": 64 } );
+                                                  "curveSegments": 32,
+                                                  "steps": 16 } );
 
   var wheelPath = new THREE.Path();
   wheelPath.moveTo( 0.18, 0 );

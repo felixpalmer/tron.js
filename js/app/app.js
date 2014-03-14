@@ -16,7 +16,7 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
     animate: function () {
       window.requestAnimationFrame( app.animate );
       app.controls.update();
-      material.grid.uniforms.uTime.value = app.clock.getElapsedTime();
+      material.sharedUniforms.uTime.value = app.clock.getElapsedTime();
       app.gameStep();
 
       renderer.render( scene, camera );

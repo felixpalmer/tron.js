@@ -1,12 +1,23 @@
-define( ["three", "shader!grid.vert", "shader!grid.frag"], function ( THREE, gridVert, gridFrag ) {
+define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", "shader!simple.frag"], function ( THREE, engineVert, gridVert, gridFrag, simpleFrag ) {
+  var sharedUniforms = {
+    uTime: { type: "f", value: 0 }
+  };
+
   return {
     bike: new THREE.MeshPhongMaterial( {
       color: new THREE.Color( 0x00f191 ),
       metal: true
     } ),
+    engine: new THREE.ShaderMaterial( {
+      uniforms: {
+        uTime: sharedUniforms.uTime
+      },
+      vertexShader: engineVert.value,
+      fragmentShader: simpleFrag.value
+    }),
     grid: new THREE.ShaderMaterial( {
       uniforms: {
-        uTime: { type: "f", value: 0 }
+        uTime: sharedUniforms.uTime
       },
       vertexShader: gridVert.value,
       fragmentShader: gridFrag.value
@@ -15,6 +26,8 @@ define( ["three", "shader!grid.vert", "shader!grid.frag"], function ( THREE, gri
       color: new THREE.Color( 0x00fc99 ),
       side: THREE.DoubleSide
     } ),
-    wheel: new THREE.MeshLambertMaterial( { color: new THREE.Color( 0x000000 ) } )
+    wheel: new THREE.MeshLambertMaterial( { color: new THREE.Color( 0x000000 ) } ),
+
+    sharedUniforms: sharedUniforms
   };
 } );

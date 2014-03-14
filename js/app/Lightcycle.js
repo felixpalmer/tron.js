@@ -15,6 +15,9 @@ function ( THREE, geometry, material ) {
     this.backWheel.position = new THREE.Vector3( 1.32, 0, 0.5 );
     this.add( this.backWheel );
 
+    this.engine = new THREE.Mesh( geometry.engine, material.wheel );
+    this.engine.position = new THREE.Vector3( 0, 0, 0.8 );
+    this.add( this.engine );
   };
 
   Lightcycle.prototype = Object.create( THREE.Object3D.prototype );

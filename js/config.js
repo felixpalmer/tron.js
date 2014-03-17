@@ -6,6 +6,7 @@ var require = {
     // --- Use shim to mix together all THREE.js subcomponents
     'threeCore': { exports: 'THREE' },
     'TrackballControls': { deps: ['threeCore'], exports: 'THREE' },
+    'CopyShader': { deps: ['threeCore'], exports: 'THREE' },
     'EdgeShader': { deps: ['threeCore'], exports: 'THREE' },
     'EffectComposer': { deps: ['threeCore'], exports: 'THREE' },
     'MaskPass': { deps: ['threeCore'], exports: 'THREE' },
@@ -21,6 +22,7 @@ var require = {
     three: '../lib/three',
     threeCore: '../lib/three.min',
     TrackballControls: '../lib/controls/TrackballControls',
+    CopyShader: '../lib/shaders/CopyShader',
     EdgeShader: '../lib/shaders/EdgeShader',
     EffectComposer: '../lib/postprocessing/EffectComposer',
     MaskPass: '../lib/postprocessing/MaskPass',

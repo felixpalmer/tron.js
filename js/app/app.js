@@ -1,5 +1,5 @@
-define( ["three", "camera", "Controls", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
-function ( THREE, camera, Controls, geometry, light, Lightcycle, material, renderer, scene ) {
+define( ["three", "camera", "Controls", "composer", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
+function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, material, renderer, scene ) {
   var app = {
     clock: new THREE.Clock( true ),
     init: function () {
@@ -19,7 +19,8 @@ function ( THREE, camera, Controls, geometry, light, Lightcycle, material, rende
       material.sharedUniforms.uTime.value = app.clock.getElapsedTime();
       app.gameStep();
 
-      renderer.render( scene, camera );
+      //renderer.render( scene, camera );
+      composer.render();
     },
     gameStep: function() {
       var speed = 2;

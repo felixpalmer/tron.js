@@ -1,32 +1,49 @@
-define( ["three", "camera", "controls", "geometry", "light", "material", "renderer", "scene"],
-function ( THREE, camera, controls, geometry, light, material, renderer, scene ) {
+define( ["three", "camera", "Controls", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
+function ( THREE, camera, Controls, geometry, light, Lightcycle, material, renderer, scene ) {
   var app = {
-    meshes: [],
+    clock: new THREE.Clock( true ),
     init: function () {
-      var spacing = 300;
-      var offset = 0;
-      for ( var m in material ) {
-        // Create one cube for each material, and add to scene
-        var mesh = new THREE.Mesh( geometry.cube, material[m] );
-        mesh.position.x = offset;
-        offset += spacing;
-        light.target = mesh;
-        scene.add( mesh );
-        app.meshes.push( mesh );
-      }
+      app.lightcycle = new Lightcycle();
+      scene.add( app.lightcycle );
+
+      app.gameGrid = new THREE.Mesh( geometry.grid, material.grid );
+      scene.add( app.gameGrid );
+
+      app.controls = new Controls( app.lightcycle );
+
+      app.lastDirection = new THREE.Vector3( 0, 0, 0 );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
-      controls.update();
-
-      // Rotate all meshes we've added to scene
-      for ( var m in app.meshes ) {
-        var mesh = app.meshes[m];
-        mesh.rotation.x += 0.005;
-        mesh.rotation.y += 0.01;
-      }
+      app.controls.update();
+      material.sharedUniforms.uTime.value = app.clock.getElapsedTime();
+      app.gameStep();
 
       renderer.render( scene, camera );
+    },
+    gameStep: function() {
+      var speed = 2;
+
+      // Detect if we have just turned
+      var lightcycleDirection = new THREE.Vector3( speed, 0, 0 );
+      lightcycleDirection.applyMatrix3( app.lightcycle.matrix );
+      var turned = !lightcycleDirection.equals( app.lastDirection );
+
+      if ( turned ) {
+        // Have just turned add new wall segment
+        app.lastDirection = lightcycleDirection.clone();
+        app.wall = new THREE.Mesh( geometry.wall, material.wall );
+        app.wall.quaternion.copy( app.lightcycle.quaternion );
+        app.wall.position = app.lightcycle.position.clone();
+        app.wall.scale.x = 0;
+        scene.add( app.wall );
+      }
+
+      // Move light cycle
+      app.lightcycle.position.add( lightcycleDirection );
+
+      // Grow wall by distance moved
+      app.wall.scale.x += speed;
     }
   };
   return app;

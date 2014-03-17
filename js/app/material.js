@@ -1,21 +1,33 @@
-define( ["three", "shader!simple.vert", "shader!simple.frag", "texture"], function ( THREE, simpleVert, simpleFrag, texture ) {
-  // Shader objects support redefining of #defines.
-  // See `simple.frag` file, where `faceColor` is already defined to be white, and we are overriding it to red here
-  simpleFrag.define( "faceColor", "vec3(1.0, 0, 0)" );
+define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", "shader!simple.frag"], function ( THREE, engineVert, gridVert, gridFrag, simpleFrag ) {
+  var sharedUniforms = {
+    uTime: { type: "f", value: 0 }
+  };
+
   return {
-    bump: new THREE.MeshPhongMaterial( { bumpMap: texture.grass } ),
-    grass: new THREE.MeshBasicMaterial( { map: texture.grass } ),
-    shader: new THREE.ShaderMaterial( {
+    bike: new THREE.MeshPhongMaterial( {
+      color: new THREE.Color( 0x00f191 ),
+      metal: true
+    } ),
+    engine: new THREE.ShaderMaterial( {
       uniforms: {
-        uColor: { type: "c", value: new THREE.Color( "#ff0000" ) }
+        uTime: sharedUniforms.uTime
       },
-      vertexShader: simpleVert.value,
+      vertexShader: engineVert.value,
       fragmentShader: simpleFrag.value
     }),
-    solid: new THREE.MeshLambertMaterial( {
-      color: 0x00dcdc,
-      shading: THREE.FlatShading
+    grid: new THREE.ShaderMaterial( {
+      uniforms: {
+        uTime: sharedUniforms.uTime
+      },
+      vertexShader: gridVert.value,
+      fragmentShader: gridFrag.value
     }),
-    wire: new THREE.MeshBasicMaterial( { wireframe: true } )
+    wall: new THREE.MeshLambertMaterial( {
+      color: new THREE.Color( 0x00fc99 ),
+      side: THREE.DoubleSide
+    } ),
+    wheel: new THREE.MeshLambertMaterial( { color: new THREE.Color( 0x000000 ) } ),
+
+    sharedUniforms: sharedUniforms
   };
 } );

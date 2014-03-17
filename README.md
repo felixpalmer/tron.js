@@ -14,7 +14,7 @@ Running
 
 Just host this directory with a webserver of your choice. You can also use the `webserver.sh` script included (provided you have Python) to set up a simple development server.
 
-Then visit http://localhost:8000 in your browser.
+Then visit http://localhost:3333 in your browser.
 
 Shaders
 =======

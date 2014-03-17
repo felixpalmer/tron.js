@@ -13,7 +13,9 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
         uTime: sharedUniforms.uTime
       },
       vertexShader: engineVert.value,
-      fragmentShader: simpleFrag.value
+      fragmentShader: simpleFrag.value,
+      blending: THREE.AdditiveBlending,
+      transparent: true
     }),
     grid: new THREE.ShaderMaterial( {
       uniforms: {
@@ -24,7 +26,10 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
     }),
     wall: new THREE.MeshLambertMaterial( {
       color: new THREE.Color( 0x00fc99 ),
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending,
+      opacity: 0.5,
+      transparent: true
     } ),
     wheel: new THREE.MeshLambertMaterial( { color: new THREE.Color( 0x000000 ) } ),
 

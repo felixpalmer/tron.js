@@ -19,9 +19,18 @@ define( ["three", "camera", "container", "renderer", "scene", "shader!combine.ve
 
   // Edge detection
   var edgePass = new THREE.ShaderPass( THREE.EdgeShader );
-  edgePass.uniforms.aspect.value.x = container.offsetWidth;
-  edgePass.uniforms.aspect.value.y = container.offsetHeight;
+  edgePass.uniforms.aspect.value.x = 0.15 * container.offsetWidth;
+  edgePass.uniforms.aspect.value.y = 0.15 * container.offsetHeight;
   composer.addPass( edgePass );
+
+  // Blur edge pass
+  var blurAmount = 0.03;
+  var blurEdgePassX = new THREE.ShaderPass( THREE.TriangleBlurShader, "texture" );
+  var blurEdgePassY = new THREE.ShaderPass( THREE.TriangleBlurShader, "texture" );
+  blurEdgePassX.uniforms.delta.value = new THREE.Vector2( blurAmount, 0 );
+  blurEdgePassY.uniforms.delta.value = new THREE.Vector2( 0, blurAmount );
+  composer.addPass( blurEdgePassX );
+  composer.addPass( blurEdgePassY );
 
   // Combine edges and original render
   var combineShader = {

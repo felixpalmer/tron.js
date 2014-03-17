@@ -11,6 +11,7 @@ var require = {
     'EffectComposer': { deps: ['threeCore'], exports: 'THREE' },
     'MaskPass': { deps: ['threeCore'], exports: 'THREE' },
     'RenderPass': { deps: ['threeCore'], exports: 'THREE' },
+    'SavePass': { deps: ['threeCore'], exports: 'THREE' },
     'ShaderPass': { deps: ['threeCore'], exports: 'THREE' },
     // --- end THREE sub-components
     'detector': { exports: 'Detector' },
@@ -27,6 +28,7 @@ var require = {
     EffectComposer: '../lib/postprocessing/EffectComposer',
     MaskPass: '../lib/postprocessing/MaskPass',
     RenderPass: '../lib/postprocessing/RenderPass',
+    SavePass: '../lib/postprocessing/SavePass',
     ShaderPass: '../lib/postprocessing/ShaderPass',
     // --- end THREE sub-components
     detector: '../lib/Detector',

@@ -49,7 +49,11 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
     offset.sub( this.object.position );
     offset.setLength( 20 );
     camera.position.addVectors( offset, this.object.position );
+
+    // Lock camera height and move slighlty to the side, so we can always see the wall behind us
     camera.position.z = 3;
+    camera.position.x += 0.1;
+    camera.position.y += 0.1;
     camera.lookAt( this.object.position );
   };
 

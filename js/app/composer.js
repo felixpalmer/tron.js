@@ -24,7 +24,7 @@ define( ["three", "camera", "container", "renderer", "scene", "shader!combine.ve
   composer.addPass( edgePass );
 
   // Blur edge pass
-  var blurAmount = 0.03;
+  var blurAmount = 0.01;
   var blurEdgePassX = new THREE.ShaderPass( THREE.TriangleBlurShader, "texture" );
   var blurEdgePassY = new THREE.ShaderPass( THREE.TriangleBlurShader, "texture" );
   blurEdgePassX.uniforms.delta.value = new THREE.Vector2( blurAmount, 0 );

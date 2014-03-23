@@ -24,7 +24,7 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
       vertexShader: gridVert.value,
       fragmentShader: gridFrag.value
     }),
-    wall: new THREE.MeshLambertMaterial( {
+    wall: new THREE.MeshBasicMaterial( {
       color: new THREE.Color( 0x00fc99 ),
       side: THREE.DoubleSide,
       blending: THREE.AdditiveBlending,

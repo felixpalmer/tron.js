@@ -79,12 +79,49 @@
     </div></section>
     <section class="slide"><div>
         <h2>Get the code!</h2>
+        <pre>
+            <code>git clone URL</code>
+            <code>cd amd-three.js</code>
+            <code>./webserver.sh</code>
+            <code>open index.html</code>
+        </pre>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>THREE.js</h2>
+        <ul>
+            <li>High level 3D framework</li> 
+            <li>Provides many useful abstractions, e.g. camera, scene, vectors, meshes, materials...</li> 
+            <li>Exposes global <code>THREE.js</code> object</li> 
+            <li>API docs: <a href="threejs.org/docs/">threejs.org/docs/</a></li>
+            <li>Examples (warning, can consume many hours): <a href="threejs.org/examples/">threejs.org/examples/</a></li>
+        </ul>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>amd-three.js</h2>
+        <ul>
+            <li>My method to provide some structure when building THREE.js applications</li> 
+            <li>Uses <a href="requirejs.org">requirejs.org</a></li>
+            <li>Separates out core building blocks into separate files</li>
+        </ul>
+    </div></section>
+    <section class="slide"><div>
+        <h2>amd-three.js</h2>
+        <ol>
+            <li>Try modifying the elements on stage:
+                <ul>
+                    <li>Add a different geomteries</li>
+                    <li>Add a new texture file, and apply it to an object</li>
+                </ul>
+            </li>
+            <li>Some basic modelling (this will form the basis of the light-cycle
+                <ul>
+                    <li>Make a compound object (use <code>THREE.Object3D.add()</code>)</li>
+                    <li>Try and make the best light cycle you can using geometry primitives</li>
+                    <li>Refactor the code into a separate Require.js module</li>
+                    <li><code>app.lightcycle = new Lightcycle();</code></li>
+                </ul>
+            </li>
+        </ol>
     </div></section>
     <section class="slide"><div>
         <h2>Title</h2>

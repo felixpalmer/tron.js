@@ -1,9 +1,9 @@
 define( ["three", "camera", "container"], function( THREE, camera, container ) {
-	function bind( scope, fn ) {
-		return function () {
-			fn.apply( scope, arguments );
-		};
-	}
+  function bind( scope, fn ) {
+    return function () {
+      fn.apply( scope, arguments );
+    };
+  }
 
   var Controls = function ( object ) {
     if ( !( object instanceof THREE.Object3D ) ) {
@@ -23,23 +23,23 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
     container.addEventListener( 'keydown', bind( this, this.onKeyDown ), false );
   };
 
-	Controls.prototype.onKeyDown = function ( event ) {
-		switch ( event.keyCode ) {
-			case 37: /*left*/
-			case 65: /*A*/ this.spinLeft = true; break;
+  Controls.prototype.onKeyDown = function ( event ) {
+    switch ( event.keyCode ) {
+      case 37: /*left*/
+      case 65: /*A*/ this.spinLeft = true; break;
 
-			case 39: /*right*/
-			case 68: /*D*/ this.spinRight = true; break;
-		}
-	};
+      case 39: /*right*/
+      case 68: /*D*/ this.spinRight = true; break;
+    }
+  };
 
-	Controls.prototype.update = function() {
+  Controls.prototype.update = function() {
     // Update object
-		if ( this.spinLeft ) {
+    if ( this.spinLeft ) {
       this.object.rotateOnAxis( this.up, Math.PI / 2 );
       this.spinLeft = false;
     }
-		if ( this.spinRight ) {
+    if ( this.spinRight ) {
       this.object.rotateOnAxis( this.up, -Math.PI / 2 );
       this.spinRight = false;
     }

@@ -19,8 +19,7 @@ function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, mater
       material.sharedUniforms.uTime.value = app.clock.getElapsedTime();
       app.gameStep();
 
-      //renderer.render( scene, camera );
-      composer.render();
+      renderer.render( scene, camera );
     },
     gameStep: function() {
       var speed = 2;

@@ -8,12 +8,17 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
       color: new THREE.Color( 0x00f191 ),
       metal: true
     } ),
+    black: new THREE.MeshBasicMaterial( {
+      color: new THREE.Color( 0x000000 )
+    } ),
     engine: new THREE.ShaderMaterial( {
       uniforms: {
         uTime: sharedUniforms.uTime
       },
       vertexShader: engineVert.value,
-      fragmentShader: simpleFrag.value
+      fragmentShader: simpleFrag.value,
+      blending: THREE.AdditiveBlending,
+      transparent: true
     }),
     grid: new THREE.ShaderMaterial( {
       uniforms: {
@@ -22,9 +27,12 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
       vertexShader: gridVert.value,
       fragmentShader: gridFrag.value
     }),
-    wall: new THREE.MeshLambertMaterial( {
+    wall: new THREE.MeshBasicMaterial( {
       color: new THREE.Color( 0x00fc99 ),
-      side: THREE.DoubleSide
+      side: THREE.DoubleSide,
+      blending: THREE.AdditiveBlending,
+      opacity: 0.5,
+      transparent: true
     } ),
     wheel: new THREE.MeshLambertMaterial( { color: new THREE.Color( 0x000000 ) } ),
 

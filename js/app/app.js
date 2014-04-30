@@ -1,12 +1,12 @@
-define( ["three", "camera", "Controls", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
-function ( THREE, camera, Controls, geometry, light, Lightcycle, material, renderer, scene ) {
+define( ["three", "camera", "Controls", "composer", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
+function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, material, renderer, scene ) {
   var app = {
     clock: new THREE.Clock( true ),
     init: function () {
       app.lightcycle = new Lightcycle();
       scene.add( app.lightcycle );
 
-      app.gameGrid = new THREE.Mesh( geometry.grid, material.grid );
+      app.gameGrid = new THREE.Mesh( geometry.grid, material.black );
       scene.add( app.gameGrid );
 
       app.controls = new Controls( app.lightcycle );

@@ -8,6 +8,9 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
       color: new THREE.Color( 0x00f191 ),
       metal: true
     } ),
+    black: new THREE.MeshBasicMaterial( {
+      color: new THREE.Color( 0x000000 )
+    } ),
     engine: new THREE.ShaderMaterial( {
       uniforms: {
         uTime: sharedUniforms.uTime

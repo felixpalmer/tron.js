@@ -6,7 +6,7 @@ function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, mater
       app.lightcycle = new Lightcycle();
       scene.add( app.lightcycle );
 
-      app.gameGrid = new THREE.Mesh( geometry.grid, material.grid );
+      app.gameGrid = new THREE.Mesh( geometry.grid, material.black );
       scene.add( app.gameGrid );
 
       app.controls = new Controls( app.lightcycle );

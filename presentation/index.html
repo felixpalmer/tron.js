@@ -188,7 +188,34 @@
         </ol>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Post-processing</h2>
+        <ul>
+          <li>Idea is to take final rendered image and apply filters</li>
+          <li>Achieve this by sending rendered image back to GPU and running shaders</li>
+          <li>THREE.js provides abstration, in the form of an Effect Composer</li>
+        </ul>
+    </div></section>
+    <section class="slide"><div>
+        <h2>Post-processing - 20mins</h2>
+        <ul>
+          <li>Play around with <code>postprocess.frag</code> in FF tools</li>
+          <li>Try adding a new stage to the Effect Composer</li>
+          <li>Write your own postprocessing effect, e.g Black & White, Sepia</li>
+          <li>Experiment combining with edge, blur, glow effect in Effect Composer</li>
+        </ul>
+    </div></section>
+    <section class="slide"><div>
+        <h2>You're on your own!</h2>
+        <ul>
+          <li>Remainder of workshop is up to you to focus on your favorite aspect</li>
+          <li>Code is up at <a href="https://github.com/felixpalmer/tron.js">https://github.com/felixpalmer/tron.js</a></li>
+          <li>Take a look at <a href="https://github.com/felixpalmer/tron.js/issues">Issues</a> for ideas for things to do, or add your own</a>
+          <li>Create an Issue for what you're working on and submit when done</li>
+          <li>If you star the repo, I'll add you as a collaborator, so you can push code</li>
+          <li>Be nice ;) Don't push broken code and try to modularize to avoid conflicts</li>
+          <p class="note">Felix Palmer | @pheeelicks | www.pheelicks.com</p>
+        </ul>
+    </div></section>
     </div></section>
     <div class="progress"><div></div></div>
     <script src="shower/shower.min.js"></script>

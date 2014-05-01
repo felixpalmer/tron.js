@@ -60,20 +60,19 @@
     <section class="slide"><div>
         <h2>Useful links</h2>
         <ul>
-            <li>Slides: <a href="felixpalmer.github.io/tron.js/presentation">felixpalmer.github.io/tron.js/presentation</a></li>
-            <li>THREE.js reference: <a href="threejs.org/docs/">threejs.org/docs/</a></li>
-            <li>GLSL Cheatsheet: <a href="TODO">TODO</a></li>
-            <li>Tron.js repo: <a href="github.com/felixpalmer/tron.js">github.com/felixpalmer/tron.js</a></li>
+            <li>Slides: <a href="http://felixpalmer.github.io/tron.js/presentation">felixpalmer.github.io/tron.js/presentation</a></li>
+            <li>THREE.js reference: <a href="http://threejs.org/docs/">threejs.org/docs/</a></li>
+            <li>GLSL Cheatsheet: <a href="http://www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf">www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf</a></li>
         </ul>
     </div></section>
     <section class="slide"><div>
         <h2>Machine setup</h2>
         <ul>
             <li>WebGL enabled browser, Firefox recommended</li> 
-            <li>Verify WebGL working, try: <a href="felixpalmer.github.io/amd-three.js/">felixpalmer.github.io/amd-three.js/</a></li>
+            <li>Verify WebGL working, try: <a href="http://felixpalmer.github.io/amd-three.js/">felixpalmer.github.io/amd-three.js/</a></li>
             <li>Text editor you're happy with</li>
-            <li>GLSL code validation tool: <a href="github.com/felixpalmer/glsl-validator">github.com/felixpalmer/glsl-validator</a></li>
-            <li>git installed (<a href="www.git-scm.com">www.git-scm.com</a>)</li>
+            <li>GLSL code validation tool: <a href="http://github.com/felixpalmer/glsl-validator">github.com/felixpalmer/glsl-validator</a></li>
+            <li>git installed (<a href="http://www.git-scm.com">www.git-scm.com</a>)</li>
             <li>Static local http server (one is included with examples, requires Python)</li>
         </ul>
     </div></section>
@@ -92,15 +91,15 @@
             <li>High level 3D framework</li> 
             <li>Provides many useful abstractions, e.g. camera, scene, vectors, meshes, materials...</li> 
             <li>Exposes global <code>THREE.js</code> object</li> 
-            <li>API docs: <a href="threejs.org/docs/">threejs.org/docs/</a></li>
-            <li>Examples (warning, can consume many hours): <a href="threejs.org/examples/">threejs.org/examples/</a></li>
+            <li>API docs: <a href="http://threejs.org/docs/">threejs.org/docs/</a></li>
+            <li>Examples (warning, can consume many hours): <a href="http://threejs.org/examples/">threejs.org/examples/</a></li>
         </ul>
     </div></section>
     <section class="slide"><div>
         <h2>amd-three.js</h2>
         <ul>
             <li>My method to provide some structure when building THREE.js applications</li> 
-            <li>Uses <a href="requirejs.org">requirejs.org</a></li>
+            <li>Uses <a href="http://requirejs.org">requirejs.org</a></li>
             <li>Separates out core building blocks into separate files</li>
         </ul>
     </div></section>
@@ -143,18 +142,80 @@
     </div></section>
     <section class="slide"><div>
         <h2>To the GPU!</h2>
+        <ul>
+          <li>Quick overview of the graphics pipeline:
+            <ol>
+              <li>Geometry, textures, meshes etc is all defined in Javascript and passed to the GPU</li>
+              <li>Shaders are written in GLSL, a C-like language</li>
+              <li>Vertex shader is invoked on every vertex in every mesh</li>
+              <li>Fragment shader is invoked on every fragment (pixel), automatically interpolating between vertices</li>
+            </ol>
+          </li>
+        <ul>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Vertex shaders - 15mins</h2>
+        <ol>
+          <li>Play around with the vertex shaders in FF dev tools</li>
+          <li>Create a new vertex shader file, based on <code>js/shaders/simple.vert</code></li>
+          <li>Create a new material with this vertex shader attached, see <code>material.simple</code></li>
+          <li>Try out some of the built-in functions: <code>mix</code>, <code>pow</code>, <code>mix</code> etc...</li>
+          <li>Try animating, by passing in the game clock, see <code>engine.vert</code></li>
+        </ol>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Passing data around</h2>
+        <ul>
+          <li>There are different types of variables in GLSL:
+              <ul>
+                  <li><code>const</code>Compile type constant</li>
+                  <li><code>attribute</code>JS -> vertex shader. Attributes are per-vertex.
+                  <li><code>uniform</code>JS -> shaders. Uniform across material</li>
+                  <li><code>varying</code>Vertex shader -> fragment shader. Interpolated!</li>
+              </ul>
+          </li>
+          <li><a href="https://github.com/mrdoob/three.js/wiki/Uniforms-types">github.com/mrdoob/three.js/wiki/Uniforms-types</a></li>
+        </ul>
+        <p class="note">Check out <code>Qualifiers</code> section in WebGL cheatsheet</p>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Fragment shaders - 20mins</h2>
+        <ol>
+          <li>Play around with the fragment shaders in FF dev tools</li>
+          <li>Create a new fragment shader file, based on <code>js/shaders/simple.frag</code></li>
+          <li>Try out some of the built-in functions: <code>sin</code>, <code>pow</code>, <code>mix</code> etc...</li>
+          <li>Try animating, by passing in the game clock, see <code>engine.frag</code></li>
+        </ol>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Post-processing</h2>
+        <ul>
+          <li>Idea is to take final rendered image and apply filters</li>
+          <li>Achieve this by sending rendered image back to GPU and running shaders</li>
+          <li>THREE.js provides abstration, in the form of an Effect Composer</li>
+        </ul>
+    </div></section>
+    <section class="slide"><div>
+        <h2>Post-processing - 20mins</h2>
+        <ul>
+          <li>Play around with <code>postprocess.frag</code> in FF tools</li>
+          <li>Try adding a new stage to the Effect Composer</li>
+          <li>Write your own postprocessing effect, e.g Black & White, Sepia</li>
+          <li>Experiment combining with edge, blur, glow effect in Effect Composer</li>
+        </ul>
+    </div></section>
+    <section class="slide"><div>
+        <h2>You're on your own!</h2>
+        <ul>
+          <li>Remainder of workshop is up to you to focus on your favorite aspect</li>
+          <li>Code is up at <a href="https://github.com/felixpalmer/tron.js">https://github.com/felixpalmer/tron.js</a></li>
+          <li>Take a look at <a href="https://github.com/felixpalmer/tron.js/issues">Issues</a> for ideas for things to do, or add your own</a>
+          <li>Create an Issue for what you're working on and submit when done</li>
+          <li>If you star the repo, I'll add you as a collaborator, so you can push code</li>
+          <li>Be nice ;) Don't push broken code and try to modularize to avoid conflicts</li>
+          <p class="note">Felix Palmer | @pheeelicks | www.pheelicks.com</p>
+        </ul>
+    </div></section>
     </div></section>
     <div class="progress"><div></div></div>
     <script src="shower/shower.min.js"></script>

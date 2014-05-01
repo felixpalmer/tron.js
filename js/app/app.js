@@ -11,15 +11,21 @@ function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, mater
 
       app.controls = new Controls( app.lightcycle );
 
+      // Uncomment to bring bike closer to camera
+      //app.controls.distance = 5;
+
       app.lastDirection = new THREE.Vector3( 0, 0, 0 );
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
       app.controls.update();
       material.sharedUniforms.uTime.value = app.clock.getElapsedTime();
+
+      // Comment out to keep cycle static
       app.gameStep();
 
-      renderer.render( scene, camera );
+      // Render scene
+      composer.render();
     },
     gameStep: function() {
       var speed = 2;

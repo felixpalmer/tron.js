@@ -20,6 +20,9 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
     this.spinLeft = false;
     this.spinRight = false;
 
+    // Distance from camera to object
+    this.distance = 20;
+
     container.addEventListener( 'keydown', bind( this, this.onKeyDown ), false );
   };
 
@@ -47,7 +50,7 @@ define( ["three", "camera", "container"], function( THREE, camera, container ) {
     // Update camera to "chase" object. First get offset from object, then scale this to a set length
     var offset = camera.position.clone();
     offset.sub( this.object.position );
-    offset.setLength( 20 );
+    offset.setLength( this.distance );
     camera.position.addVectors( offset, this.object.position );
 
     // Lock camera height and move slighlty to the side, so we can always see the wall behind us

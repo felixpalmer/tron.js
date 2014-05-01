@@ -62,8 +62,7 @@
         <ul>
             <li>Slides: <a href="felixpalmer.github.io/tron.js/presentation">felixpalmer.github.io/tron.js/presentation</a></li>
             <li>THREE.js reference: <a href="threejs.org/docs/">threejs.org/docs/</a></li>
-            <li>GLSL Cheatsheet: <a href="TODO">TODO</a></li>
-            <li>Tron.js repo: <a href="github.com/felixpalmer/tron.js">github.com/felixpalmer/tron.js</a></li>
+            <li>GLSL Cheatsheet: <a href="www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf">www.khronos.org/files/webgl/webgl-reference-card-1_0.pdf</a></li>
         </ul>
     </div></section>
     <section class="slide"><div>
@@ -143,12 +142,28 @@
     </div></section>
     <section class="slide"><div>
         <h2>To the GPU!</h2>
+        <ul>
+          <li>Quick overview of the graphics pipeline:
+            <ol>
+              <li>Geometry, textures, meshes etc is all defined in Javascript and passed to the GPU</li>
+              <li>Vertex shader is invoked on every vertex in every mesh</li>
+              <li>Fragment shader is invoked on every fragment (pixel), automatically interpolating between vertices</li>
+            </ol>
+          </li>
+        <ul>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Vertex shaders - 15mins</h2>
+        <ol>
+          <li>Play around with the vertex shaders in FF dev tools</li>
+          <li>Create a new vertex shader file, based on <code>js/shaders/simple.vert</code></li>
+          <li>Create a new material with this vertex shader attached, see <code>material.simple</code></li>
+          <li>Try out some of the built-in functions: <code>mix</code>, <code>pow</code>, <code>mix</code> etc...</li>
+          <li>Try animiting, by passing in the game clock, see <code>engine.vert</code></li>
+        </ol>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Passing</h2>
     </div></section>
     <section class="slide"><div>
         <h2>Title</h2>

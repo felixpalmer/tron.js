@@ -1,4 +1,4 @@
-define( ["three", "camera", "Controls", "composer", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
+define( ["three", "camera", "controls", "composer", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
 function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, material, renderer, scene ) {
   var app = {
     clock: new THREE.Clock( true ),

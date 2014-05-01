@@ -1,4 +1,4 @@
-define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", "shader!simple.frag"], function ( THREE, engineVert, gridVert, gridFrag, simpleFrag ) {
+define( ["three", "shader!engine.vert", "shader!engine.frag", "shader!grid.vert", "shader!grid.frag", "shader!simple.vert", "shader!simple.frag" ], function ( THREE, engineVert, engineFrag, gridVert, gridFrag, simpleVert, simpleFrag ) {
   var sharedUniforms = {
     uTime: { type: "f", value: 0 }
   };
@@ -16,7 +16,7 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
         uTime: sharedUniforms.uTime
       },
       vertexShader: engineVert.value,
-      fragmentShader: simpleFrag.value,
+      fragmentShader: engineFrag.value,
       blending: THREE.AdditiveBlending,
       transparent: true
     }),
@@ -27,6 +27,10 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
       vertexShader: gridVert.value,
       fragmentShader: gridFrag.value
     }),
+    simple: new THREE.ShaderMaterial( {
+      vertexShader: simpleVert.value,
+      fragmentShader: simpleFrag.value
+    } ),
     wall: new THREE.MeshBasicMaterial( {
       color: new THREE.Color( 0x00fc99 ),
       side: THREE.DoubleSide,
@@ -34,7 +38,9 @@ define( ["three", "shader!engine.vert", "shader!grid.vert", "shader!grid.frag", 
       opacity: 0.5,
       transparent: true
     } ),
-    wheel: new THREE.MeshLambertMaterial( { color: new THREE.Color( 0x000000 ) } ),
+    wheel: new THREE.MeshLambertMaterial( {
+       color: new THREE.Color( 0x000000 )
+    } ),
 
     sharedUniforms: sharedUniforms
   };

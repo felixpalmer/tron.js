@@ -146,6 +146,7 @@
           <li>Quick overview of the graphics pipeline:
             <ol>
               <li>Geometry, textures, meshes etc is all defined in Javascript and passed to the GPU</li>
+              <li>Shaders are written in GLSL, a C-like language</li>
               <li>Vertex shader is invoked on every vertex in every mesh</li>
               <li>Fragment shader is invoked on every fragment (pixel), automatically interpolating between vertices</li>
             </ol>
@@ -159,14 +160,32 @@
           <li>Create a new vertex shader file, based on <code>js/shaders/simple.vert</code></li>
           <li>Create a new material with this vertex shader attached, see <code>material.simple</code></li>
           <li>Try out some of the built-in functions: <code>mix</code>, <code>pow</code>, <code>mix</code> etc...</li>
-          <li>Try animiting, by passing in the game clock, see <code>engine.vert</code></li>
+          <li>Try animating, by passing in the game clock, see <code>engine.vert</code></li>
         </ol>
     </div></section>
     <section class="slide"><div>
-        <h2>Passing</h2>
+        <h2>Passing data around</h2>
+        <ul>
+          <li>There are different types of variables in GLSL:
+              <ul>
+                  <li><code>const</code>Compile type constant</li>
+                  <li><code>attribute</code>JS -> vertex shader. Attributes are per-vertex.
+                  <li><code>uniform</code>JS -> shaders. Uniform across material</li>
+                  <li><code>varying</code>Vertex shader -> fragment shader. Interpolated!</li>
+              </ul>
+          </li>
+          <li><a href="https://github.com/mrdoob/three.js/wiki/Uniforms-types">github.com/mrdoob/three.js/wiki/Uniforms-types</a></li>
+        </ul>
+        <p class="note">Check out <code>Qualifiers</code> section in WebGL cheatsheet</p>
     </div></section>
     <section class="slide"><div>
-        <h2>Title</h2>
+        <h2>Fragment shaders - 20mins</h2>
+        <ol>
+          <li>Play around with the fragment shaders in FF dev tools</li>
+          <li>Create a new fragment shader file, based on <code>js/shaders/simple.frag</code></li>
+          <li>Try out some of the built-in functions: <code>sin</code>, <code>pow</code>, <code>mix</code> etc...</li>
+          <li>Try animating, by passing in the game clock, see <code>engine.frag</code></li>
+        </ol>
     </div></section>
     <section class="slide"><div>
         <h2>Title</h2>

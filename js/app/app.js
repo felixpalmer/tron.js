@@ -21,6 +21,8 @@ function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, mater
       container.onclick = function () {
         app.paused = false;
         app.controls.distance = 20;
+        var clickToStartElement = document.getElementById( 'click-to-start' );
+        clickToStartElement.parentElement.removeChild( clickToStartElement );
       };
     },
     animate: function () {

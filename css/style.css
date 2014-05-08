@@ -13,8 +13,13 @@ body {
   margin: 0;
 }
 
-h1 {
-  font-size: 70px;
+#click-to-start {
+  color: white;
+  font-size: 48px;
+  left: 80px;
+  position: absolute;
+  top: 20px;
+  z-index: 100;
 }
 
 /* threejs container styles */

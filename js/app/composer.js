@@ -9,9 +9,9 @@ define( ["three", "camera", "container", "renderer", "scene", "shader!combine.ve
   // Start postprocessing
 
   // Glow effect
-  var glow = false;
-  var edge = false;
-  var blur = false;
+  var glow = true;
+  var edge = true;
+  var blur = true;
   if ( glow ) {
   // Save pass (we'll want to use the base render to use later)
   var renderTargetParams = {

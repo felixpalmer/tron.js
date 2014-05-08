@@ -15,8 +15,8 @@ function ( THREE, geometry, material ) {
     this.backWheel.position = new THREE.Vector3( 1.32, 0, 0.5 );
     this.add( this.backWheel );
 
-    this.engine = new THREE.Mesh( geometry.engine, material.simple );
-    //this.engine = new THREE.Mesh( geometry.engine, material.engine );
+    //this.engine = new THREE.Mesh( geometry.engine, material.simple );
+    this.engine = new THREE.Mesh( geometry.engine, material.engine );
     this.engine.position = new THREE.Vector3( 0, 0, 0.2 );
     this.add( this.engine );
   };

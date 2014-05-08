@@ -1,20 +1,27 @@
 define( ["three", "camera", "Controls", "composer", "geometry", "light", "Lightcycle", "material", "renderer", "scene"],
 function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, material, renderer, scene ) {
   var app = {
+    paused: true,
     clock: new THREE.Clock( true ),
     init: function () {
       app.lightcycle = new Lightcycle();
       scene.add( app.lightcycle );
 
-      app.gameGrid = new THREE.Mesh( geometry.grid, material.black );
+      //app.gameGrid = new THREE.Mesh( geometry.grid, material.black );
+      app.gameGrid = new THREE.Mesh( geometry.grid, material.grid );
       scene.add( app.gameGrid );
 
       app.controls = new Controls( app.lightcycle );
 
       // Uncomment to bring bike closer to camera
-      //app.controls.distance = 5;
+      app.controls.distance = 5;
 
       app.lastDirection = new THREE.Vector3( 0, 0, 0 );
+
+      container.onclick = function () {
+        app.paused = false;
+        app.controls.distance = 20;
+      };
     },
     animate: function () {
       window.requestAnimationFrame( app.animate );
@@ -22,7 +29,9 @@ function ( THREE, camera, Controls, composer, geometry, light, Lightcycle, mater
       material.sharedUniforms.uTime.value = app.clock.getElapsedTime();
 
       // Comment out to keep cycle static
-      app.gameStep();
+      if ( !app.paused ) {
+        app.gameStep();
+      }
 
       // Render scene
       composer.render();

@@ -28,8 +28,8 @@ define( ["three", "camera", "container", "renderer", "scene", "shader!combine.ve
   if ( glow || edge ) {
     // Edge detection
     var edgePass = new THREE.ShaderPass( THREE.EdgeShader );
-    edgePass.uniforms.aspect.value.x = 0.15 * container.offsetWidth;
-    edgePass.uniforms.aspect.value.y = 0.15 * container.offsetHeight;
+    edgePass.uniforms.aspect.value.x = 0.25 * container.offsetWidth;
+    edgePass.uniforms.aspect.value.y = 0.25 * container.offsetHeight;
     composer.addPass( edgePass );
   }
 
